@@ -46,27 +46,15 @@
     </div>
   </body>
   <script>
-  function get_active_elem(obj) {
-    var list= obj.children;
-    for (var i = 0; i < list.length; i++) {
-      if ((' ' + list[i].className + ' ').indexOf(' ' + 'active' + ' ') > -1) {
-        return list[i];
-      }
-    }
-  }
   function getConfigData() {
-    var displayStyleTab = document.getElementById('display_style_tab');
-    var fpsSlider = document.getElementById('fps_slider');
     var ipInput = document.getElementById('ip_input');
  
     var options = {
-      'display_style': parseInt(get_active_elem(displayStyleTab).dataset.value),
-      'fps': fpsSlider.valueAsNumber,
       'IP': ipInput.value,
     };
 
     // Save for next launch
-    localStorage['fps'] = options['fps'];
+    localStorage['IP'] = options['IP'];
 
     console.log('Got options: ' + options);
     return options;
@@ -94,12 +82,11 @@
   });
 
   (function() {
-    var fpsSlider = document.getElementById('fps_slider');
-    var displayStyleTab = document.getElementById('display_style_tab');
+    var ipInput = document.getElementById('ip_input');
 
     // Load any previously saved configuration, if available
-    if(localStorage['fps']) {
-      fpsSlider.value = localStorage['fps'];
+    if(localStorage['IP']) {
+      ipInput.value = localStorage['IP'];
     }
   })();
   </script>
